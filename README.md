@@ -1,30 +1,104 @@
-# Personal Portfolio Website
+# 🌟 Portfolio Website (Spring Boot + Thymeleaf)
 
-A professional portfolio website built with Spring Boot and Thymeleaf, designed for job applications.
+A modern and responsive personal portfolio website built using **Spring Boot** and **Thymeleaf**.  
+This portfolio showcases my skills, projects, experience, and provides quick access to my resume and social profiles.
 
-## Features
-- Responsive design with Tailwind CSS
-- Modern UI with smooth animations
-- SEO-friendly server-side rendering
-- Fast loading performance
-- Easy to customize and deploy
+---
 
-## Tech Stack
-- Java 17
-- Spring Boot 3.1.5
-- Thymeleaf (Server-side rendering)
-- Tailwind CSS (Styling)
-- Font Awesome Icons
+## 🚀 Features
 
-## Getting Started
+✅ Modern UI with dark + neon theme  
+✅ Smooth sections: Home, About, Skills, Projects, Contact  
+✅ Projects section with **View Code** and **Live Demo** buttons  
+✅ Resume download option  
+✅ Responsive design (works on desktop & mobile)  
+✅ Built with clean code structure and reusable components
 
-### Prerequisites
-- Java 17 or higher
-- Maven 3.6 or higher
-- Git
+---
 
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/portfolio-website.git
-   cd portfolio-website
+## 🛠 Tech Stack
+
+- **Backend:** Spring Boot (Java)
+- **Frontend:** Thymeleaf, HTML, CSS, JavaScript
+- **Build Tool:** Maven
+- **Deployment Ready:** Render / Railway / Any Java hosting
+
+---
+
+## 📂 Project Structure
+
+```bash
+portfolio/
+│── src/
+│   ├── main/
+│   │   ├── java/com/vijay/portfolio/
+│   │   └── resources/
+│   │       ├── static/
+│   │       └── templates/
+│── pom.xml
+│── mvnw
+│── mvnw.cmd
+│── README.md
+````
+
+---
+
+## ⚙️ Run Locally
+
+### 1️⃣ Clone the project
+
+```bash
+git clone https://github.com/VijayNT23/portfolio.git
+cd portfolio
+```
+
+### 2️⃣ Build the project
+
+```bash
+mvn clean package -DskipTests
+```
+
+### 3️⃣ Run the application
+
+```bash
+java -jar target/portfolio-0.0.1-SNAPSHOT.jar
+```
+
+### 4️⃣ Open in browser
+
+✅ [http://localhost:8080](http://localhost:8080)
+
+---
+
+## 🌍 Deployment
+
+This project can be deployed easily on platforms like:
+
+✅ Render
+✅ Railway
+✅ AWS / Azure
+✅ Any Java-supported hosting
+
+> **Important (Render Port Fix):**
+> Add this in `application.properties`:
+
+```properties
+server.port=${PORT:8080}
+```
+
+---
+
+## 📬 Contact
+
+If you'd like to connect with me:
+
+📧 Email: [pandeyvijay739@gmail.com](mailto:pandeyvijay739@gmail.com)
+🔗 GitHub: [https://github.com/VijayNT23](https://github.com/VijayNT23)
+🔗 LinkedIn: *(Add your LinkedIn link here)*
+
+---
+
+⭐ If you like this project, feel free to give it a star!
+
+```
+
