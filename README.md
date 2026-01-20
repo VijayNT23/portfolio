@@ -27,8 +27,9 @@ This portfolio showcases my skills, projects, experience, and provides quick acc
 
 ## 🎥 Portfolio Demo
 
-![Portfolio Demo](assets/portfoliodemo.gif)
-
+<p align="center">
+  <img src="assets/portfoliodemo.gif" width="900" />
+</p>
 
 ## 📂 Project Structure
 
