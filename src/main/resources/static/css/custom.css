@@ -1,0 +1,385 @@
+/* Custom Styles for Enhanced 3D Portfolio */
+
+/* Navigation Links */
+.nav-link {
+    @apply text-gray-300 hover:text-white transition-colors duration-300 relative;
+}
+
+.nav-underline {
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple transition-all duration-300;
+}
+
+.nav-link:hover .nav-underline {
+    @apply w-full;
+}
+
+.mobile-nav-link {
+    @apply text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-gray-800/50 transition-all duration-300 flex items-center;
+}
+
+/* Skill Cards - Enhanced 3D */
+.skill-card {
+    @apply p-6 rounded-2xl bg-gradient-to-br from-card-bg/50 to-dark-bg/50 border border-gray-800/50
+    transition-all duration-500 transform-gpu;
+    transform-style: preserve-3d;
+}
+
+/* 3D Project Cards */
+.project-card {
+    @apply transition-all duration-500 transform-gpu;
+    transform-style: preserve-3d;
+}
+
+.project-card:hover {
+    transform: translateZ(20px) rotateY(5deg) rotateX(5deg);
+}
+
+/* Contact Cards */
+.contact-card {
+    @apply p-8 rounded-2xl bg-gradient-to-br from-card-bg to-dark-bg border border-gray-800/50
+    hover:border-neon-blue transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/20
+    text-center cursor-pointer transform-gpu;
+}
+
+.social-icon {
+    @apply w-12 h-12 rounded-full bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700
+    flex items-center justify-center text-xl text-gray-400 hover:text-white
+    hover:border-neon-blue transition-all duration-300 hover:scale-110;
+}
+
+/* Animation Delays */
+.animation-delay-1000 {
+    animation-delay: 1s;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+/* Gradient Backgrounds */
+.bg-gradient-radial {
+    background: radial-gradient(ellipse at center, var(--tw-gradient-stops));
+}
+
+/* Backface Visibility */
+.backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Text Selection */
+::selection {
+    background: rgba(0, 243, 255, 0.3);
+    color: white;
+}
+
+/* Loading Animation */
+.loading-dots {
+    display: inline-flex;
+    align-items: center;
+}
+
+.loading-dots span {
+    width: 8px;
+    height: 8px;
+    margin: 0 3px;
+    background-color: #00f3ff;
+    border-radius: 50%;
+    animation: loading 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes loading {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+/* Shimmer Effect */
+.shimmer-bg {
+    background: linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0) 100%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #00f3ff, #9d4edd);
+    border-radius: 3px;
+}
+
+/* Hover Effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px) translateZ(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Glass Effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient Text Animation */
+.gradient-text {
+    background: linear-gradient(45deg, #00f3ff, #9d4edd, #00f3ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient 3s linear infinite;
+}
+
+/* Enhanced 3D Animations */
+@keyframes float-3d {
+    0%, 100% {
+        transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+    }
+    33% {
+        transform: translate3d(10px, -20px, 30px) rotateX(5deg) rotateY(10deg);
+    }
+    66% {
+        transform: translate3d(-10px, 10px, 20px) rotateX(-5deg) rotateY(-10deg);
+    }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes hologram {
+    0%, 100% {
+        opacity: 1;
+        filter: hue-rotate(0deg) brightness(1);
+    }
+    50% {
+        opacity: 0.8;
+        filter: hue-rotate(45deg) brightness(1.2);
+    }
+}
+
+/* New 3D Classes */
+.hologram-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.hologram-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+            to bottom right,
+            transparent 30%,
+            rgba(0, 243, 255, 0.1) 50%,
+            transparent 70%
+    );
+    animation: hologram 3s infinite;
+    pointer-events: none;
+}
+
+.glitch-effect {
+    animation: glitch 0.5s infinite;
+}
+
+/* 3D Skill Icons */
+.skill-3d-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.skill-3d-icon {
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.skill-3d-icon:hover {
+    transform: rotateY(180deg) translateZ(50px);
+}
+
+/* Glass Morphism Enhancement */
+.glass-morphism {
+    background: rgba(26, 26, 46, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    box-shadow: 0 8px 32px 0 rgba(0, 243, 255, 0.37);
+}
+
+/* Particle Connection Lines */
+.particle-connection {
+    position: absolute;
+    background: linear-gradient(90deg, #00f3ff, transparent);
+    height: 1px;
+    transform-origin: left;
+}
+
+/* 3D Floating Particles */
+.floating-particle {
+    position: absolute;
+    background: linear-gradient(45deg, #00f3ff, #9d4edd);
+    border-radius: 50%;
+    animation: float-3d 6s ease-in-out infinite;
+}
+
+/* Hologram Effect */
+.hologram-text {
+    text-shadow:
+            0 0 10px #00f3ff,
+            0 0 20px #00f3ff,
+            0 0 30px #00f3ff,
+            0 0 40px #9d4edd;
+    animation: hologram 3s infinite;
+}
+
+/* 3D Grid Background */
+.grid-3d-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+            linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px) 0 0 / 50px 50px,
+            linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px) 0 0 / 50px 50px;
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: center top;
+    z-index: -1;
+}
+
+/* 3D Card Flip */
+.card-3d-flip {
+    perspective: 1000px;
+}
+
+.card-3d-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.card-3d-flip:hover .card-3d-flip-inner {
+    transform: rotateY(180deg);
+}
+
+.card-3d-flip-front, .card-3d-flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.card-3d-flip-back {
+    transform: rotateY(180deg);
+}
+
+/* 3D Text Effect */
+.text-3d {
+    text-shadow:
+            1px 1px 0 #00f3ff,
+            2px 2px 0 #00f3ff,
+            3px 3px 0 #00f3ff,
+            4px 4px 0 #00f3ff,
+            5px 5px 0 #00f3ff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .card-3d:hover {
+        transform: none !important;
+    }
+
+    .skill-icon-3d {
+        filter: none !important;
+    }
+
+    .grid-3d-bg {
+        transform: perspective(300px) rotateX(60deg);
+    }
+
+    /* Performance Optimizations */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+
+    /* Hardware acceleration for critical elements only */
+    .skill-card,
+    .project-card,
+    .contact-card {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    /* Reduce animations on mobile */
+    @media (max-width: 768px) {
+        .card-3d:hover {
+            transform: none !important;
+        }
+
+        .parallax-layer,
+        .grid-3d-bg {
+            display: none !important;
+        }
+
+        .skill-3d-icon:hover {
+            transform: none !important;
+        }
+    }
+
+    /* Optimize particle animations */
+    .floating-particle {
+        will-change: transform, opacity;
+    }
+
+    /* Lazy load for background images */
+    .lazy-bg {
+        background-image: none;
+    }
+
+    .lazy-bg.loaded {
+        background-image: var(--bg-image);
+    }
+}
