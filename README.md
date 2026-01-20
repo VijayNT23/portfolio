@@ -25,6 +25,11 @@ This portfolio showcases my skills, projects, experience, and provides quick acc
 
 ---
 
+## 🎥 Portfolio Demo
+
+![Portfolio Demo](assets/portfoliodemo.gif)
+
+
 ## 📂 Project Structure
 
 ```bash
