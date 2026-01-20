@@ -94,7 +94,7 @@ If you'd like to connect with me:
 
 📧 Email: [pandeyvijay739@gmail.com](mailto:pandeyvijay739@gmail.com)
 🔗 GitHub: [https://github.com/VijayNT23](https://github.com/VijayNT23)
-🔗 LinkedIn: *(Add your LinkedIn link here)*
+🔗 LinkedIn: [https://www.linkedin.com/in/vijay-pandey-87804427b/)
 
 ---
 
