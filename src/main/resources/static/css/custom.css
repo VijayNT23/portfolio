@@ -1,4 +1,4 @@
-/* Custom Styles for Enhanced 3D Portfolio */
+/* Custom Styles for Enhanced 3D Portfolio - MOBILE OPTIMIZED */
 
 /* Navigation Links */
 .nav-link {
@@ -318,68 +318,282 @@
             5px 5px 0 #00f3ff;
 }
 
-/* Responsive Adjustments */
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+
+/* Container for all sections */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Body overflow fix */
+body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* MOBILE NAVBAR FIX */
 @media (max-width: 768px) {
+    /* Fix navbar layout */
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px 16px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    /* Fix mobile menu */
+    .mobile-menu-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(20px);
+        z-index: 9998;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mobile-menu-content {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .mobile-menu-content a {
+        display: block;
+        font-size: 1.8rem;
+        margin: 1.5rem 0;
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 600;
+    }
+
+    .mobile-menu-content a:hover {
+        color: #00f5ff;
+        transform: scale(1.1);
+    }
+
+    /* HERO SECTION MOBILE FIX */
+    #home .lg\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    #home h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.2;
+        text-align: center;
+    }
+
+    #home .profile-image {
+        width: 240px !important;
+        height: 240px !important;
+        margin: 0 auto;
+    }
+
+    #home .contact-info {
+        grid-template-columns: 1fr !important;
+        max-width: 320px;
+        margin: 2rem auto 0;
+    }
+
+    .hero-content {
+        order: 2;
+        text-align: center;
+    }
+
+    .hero-image {
+        order: 1;
+        margin-bottom: 2rem;
+    }
+
+    /* SKILLS SECTION MOBILE FIX */
+    #skills .lg\:grid-cols-5 {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem !important;
+    }
+
+    .skill-card {
+        padding: 1rem !important;
+    }
+
+    .skill-card i {
+        font-size: 2rem !important;
+    }
+
+    /* PROJECTS SECTION MOBILE FIX */
+    #projects .lg\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    .project-card {
+        margin: 0 auto;
+        max-width: 95%;
+        padding: 1.5rem !important;
+    }
+
+    /* CONTACT SECTION MOBILE FIX */
+    #contact .md\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    .contact-card {
+        margin: 0 auto;
+        max-width: 95%;
+        padding: 1.5rem !important;
+    }
+
+    /* ABOUT SECTION MOBILE FIX */
+    #about .lg\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    .about-card {
+        margin-bottom: 2rem;
+    }
+
+    /* FONT SIZES FOR MOBILE */
+    .text-5xl { font-size: 2.5rem !important; }
+    .text-4xl { font-size: 2rem !important; }
+    .text-3xl { font-size: 1.75rem !important; }
+    .text-2xl { font-size: 1.5rem !important; }
+    .text-xl { font-size: 1.25rem !important; }
+    .text-lg { font-size: 1.125rem !important; }
+
+    .section-title {
+        font-size: 2rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* BUTTON SIZES FOR MOBILE */
+    .cta-button {
+        font-size: 1rem !important;
+        padding: 0.875rem 1.5rem !important;
+        margin: 0.5rem auto !important;
+        display: block;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    /* PADDING FIXES */
+    section {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .px-8 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* DISABLE HEAVY 3D EFFECTS ON MOBILE */
     .card-3d:hover {
         transform: none !important;
     }
 
-    .skill-icon-3d {
-        filter: none !important;
+    .skill-3d-icon:hover {
+        transform: none !important;
+    }
+
+    /* HIDE BACKGROUND ELEMENTS FOR PERFORMANCE */
+    .floating-element {
+        display: none !important;
     }
 
     .grid-3d-bg {
-        transform: perspective(300px) rotateX(60deg);
+        display: none !important;
     }
 
-    /* Performance Optimizations */
-    @media (prefers-reduced-motion: reduce) {
-        *,
-        *::before,
-        *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-            scroll-behavior: auto !important;
-        }
+    /* TOUCH-FRIENDLY IMPROVEMENTS */
+    button,
+    a {
+        min-height: 44px;
+        min-width: 44px;
     }
 
-    /* Hardware acceleration for critical elements only */
-    .skill-card,
-    .project-card,
-    .contact-card {
-        transform: translateZ(0);
-        backface-visibility: hidden;
-        perspective: 1000px;
+    /* TYPEWRITER FIX */
+    .typewriter-text {
+        white-space: normal !important;
+        border-right: none !important;
+        animation: none !important;
+        display: block;
+        font-size: 1.25rem !important;
+    }
+}
+
+/* EXTRA SMALL DEVICES */
+@media (max-width: 480px) {
+    #skills .lg\:grid-cols-5 {
+        grid-template-columns: 1fr !important;
     }
 
-    /* Reduce animations on mobile */
-    @media (max-width: 768px) {
-        .card-3d:hover {
-            transform: none !important;
-        }
-
-        .parallax-layer,
-        .grid-3d-bg {
-            display: none !important;
-        }
-
-        .skill-3d-icon:hover {
-            transform: none !important;
-        }
+    #home h1 {
+        font-size: 2rem !important;
     }
 
-    /* Optimize particle animations */
-    .floating-particle {
-        will-change: transform, opacity;
+    .section-title {
+        font-size: 1.75rem !important;
     }
 
-    /* Lazy load for background images */
-    .lazy-bg {
-        background-image: none;
+    .mobile-menu-content a {
+        font-size: 1.5rem;
     }
 
-    .lazy-bg.loaded {
-        background-image: var(--bg-image);
+    /* Single column for contact info */
+    #home .contact-info {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
     }
+
+    /* Adjust card padding */
+    .premium-card {
+        padding: 1rem !important;
+    }
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Hardware acceleration for critical elements only */
+.skill-card,
+.project-card,
+.contact-card {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Optimize particle animations */
+.floating-particle {
+    will-change: transform, opacity;
+}
+
+/* Lazy load for background images */
+.lazy-bg {
+    background-image: none;
+}
+
+.lazy-bg.loaded {
+    background-image: var(--bg-image);
 }
