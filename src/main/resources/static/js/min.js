@@ -1,6 +1,6 @@
-// Optimized 3D Portfolio Interactions
+// Optimized Portfolio Interactions - MOBILE FIXED
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Portfolio: Initializing...');
+    console.log('Portfolio: Mobile Optimized Initializing...');
 
     // Loading screen management
     const loadingScreen = document.getElementById('loading-screen');
@@ -13,28 +13,64 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 
-    // Mobile Menu Toggle
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
+    // Mobile Menu Functionality
+    function setupMobileMenu() {
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu-container');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-    if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-            menuBtn.innerHTML = mobileMenu.classList.contains('hidden')
-                ? '<i class="fas fa-bars text-2xl"></i>'
-                : '<i class="fas fa-times text-2xl"></i>';
-        });
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                this.classList.toggle('active');
 
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!menuBtn.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.classList.add('hidden');
-                menuBtn.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+                if (mobileMenu.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                    menuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    document.body.style.overflow = 'auto';
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+
+            // Close menu button
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
             }
-        });
+
+            // Close menu when clicking links
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    menuBtn.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (mobileMenu.classList.contains('active')) {
+                    if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                        mobileMenu.classList.remove('active');
+                        menuBtn.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        }
     }
 
-    // Smooth scrolling for anchor links (optimized)
+    setupMobileMenu();
+
+    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -48,136 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
                 });
-
-                // Update URL without page reload
-                history.pushState(null, null, href);
-
-                // Close mobile menu if open
-                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                    menuBtn.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
-                }
             }
         });
     });
 
-    // Lazy load heavy animations
-    let animationsLoaded = false;
-
-    const loadAnimations = () => {
-        if (animationsLoaded) return;
-        animationsLoaded = true;
-
-        console.log('Portfolio: Loading animations...');
-
-        // Initialize AOS with delay
-        if (typeof AOS !== 'undefined') {
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 100
-            });
-        }
-
-        // Initialize particles with reduced count
-        if (typeof particlesJS !== 'undefined') {
-            particlesJS('particles-js', {
-                particles: {
-                    number: { value: 50, density: { enable: true, value_area: 500 } },
-                    color: { value: "#00f3ff" },
-                    shape: { type: "circle" },
-                    opacity: { value: 0.3, random: true },
-                    size: { value: 2, random: true },
-                    line_linked: {
-                        enable: false, // Disable lines for performance
-                        distance: 150,
-                        color: "#9d4edd",
-                        opacity: 0.4,
-                        width: 1
-                    },
-                    move: {
-                        enable: true,
-                        speed: 1.5, // Reduced speed
-                        direction: "none",
-                        random: true,
-                        straight: false,
-                        out_mode: "out",
-                        bounce: false
-                    }
-                },
-                interactivity: {
-                    detect_on: "canvas",
-                    events: {
-                        onhover: { enable: false }, // Disable hover for performance
-                        onclick: { enable: false }
-                    }
-                }
-            });
-        }
-
-        // Initialize Vanilla Tilt with limited instances
-        if (typeof VanillaTilt !== 'undefined') {
-            // Only apply to main cards, not all
-            VanillaTilt.init(document.querySelectorAll('.skill-card, .contact-card'), {
-                max: 10,
-                speed: 300,
-                glare: false, // Disable glare for performance
-                "max-glare": 0,
-                gyroscope: false // Disable gyroscope
-            });
-        }
-
-        // Create limited floating particles
-        createFloatingParticles(10); // Reduced count
-    };
-
-    // Load animations when user scrolls or after 2 seconds
-    let animationTimer = setTimeout(loadAnimations, 2000);
-
-    window.addEventListener('scroll', () => {
-        if (!animationsLoaded) {
-            clearTimeout(animationTimer);
-            loadAnimations();
-        }
-    }, { once: true });
-
-    // Update active nav link (optimized with debounce)
-    let scrollTimeout;
-    function updateActiveNavLink() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-
-        let current = '';
-        const scrollY = window.pageYOffset;
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.clientHeight;
-
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            if (href === `#${current}`) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateActiveNavLink, 50);
-    });
-
-    // Back to Top button (optimized)
+    // Back to Top button
     const backToTop = document.getElementById('back-to-top');
     if (backToTop) {
-        let backToTopTimer;
+        let scrollTimeout;
+
         function updateBackToTop() {
             if (window.scrollY > 300) {
                 backToTop.style.opacity = '1';
@@ -192,91 +107,77 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
+        // Throttle scroll event
         window.addEventListener('scroll', () => {
-            clearTimeout(backToTopTimer);
-            backToTopTimer = setTimeout(updateBackToTop, 50);
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(updateBackToTop, 50);
         });
     }
 
-    // Typewriter effect (delayed)
-    setTimeout(() => {
-        const typewriter = document.querySelector('.typewriter');
-        if (typewriter) {
-            const text = "Software Engineer | Full Stack Developer";
-            const speed = 50;
-            let i = 0;
+    // Optimize for mobile
+    function optimizeForMobile() {
+        if (window.innerWidth <= 768) {
+            // Disable heavy hover effects
+            const cards = document.querySelectorAll('.premium-card, .project-card, .skill-card');
+            cards.forEach(card => {
+                card.style.transition = 'transform 0.2s ease';
+            });
 
-            function typeWriter() {
-                if (i < text.length) {
-                    typewriter.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, speed);
-                }
+            // Simplify typewriter effect
+            const typewriter = document.querySelector('.typewriter-text');
+            if (typewriter) {
+                typewriter.style.animation = 'none';
+                typewriter.style.borderRight = 'none';
             }
-
-            setTimeout(typeWriter, 500);
         }
-    }, 1000);
+    }
+
+    optimizeForMobile();
+    window.addEventListener('resize', optimizeForMobile);
+
+    console.log('Portfolio: Mobile Optimization Complete');
 });
 
-// Optimized floating particles
-function createFloatingParticles(count = 10) {
-    const container = document.querySelector('#particles-js') || document.body;
+// Create lightweight floating particles (desktop only)
+function createFloatingParticles() {
+    if (window.innerWidth > 768) {
+        const container = document.body;
+        const particleCount = 6; // Very reduced for performance
 
-    for (let i = 0; i < count; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'floating-particle';
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'floating-particle';
 
-        const size = Math.random() * 6 + 2;
-        const x = Math.random() * 100;
-        const y = Math.random() * 100;
-        const delay = Math.random() * 3;
-        const duration = Math.random() * 3 + 2;
+            const size = Math.random() * 3 + 1;
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const delay = Math.random() * 3;
+            const duration = Math.random() * 3 + 2;
 
-        particle.style.cssText = `
-            width: ${size}px;
-            height: ${size}px;
-            left: ${x}%;
-            top: ${y}%;
-            animation-delay: ${delay}s;
-            animation-duration: ${duration}s;
-            opacity: ${Math.random() * 0.2 + 0.1};
-            z-index: 1;
-            background: linear-gradient(45deg, #00f3ff, #9d4edd);
-            border-radius: 50%;
-            position: absolute;
-            pointer-events: none;
-        `;
+            particle.style.cssText = `
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}%;
+                top: ${y}%;
+                animation-delay: ${delay}s;
+                animation-duration: ${duration}s;
+                opacity: ${Math.random() * 0.1 + 0.05};
+                z-index: 1;
+                background: linear-gradient(45deg, #00f3ff, #9d4edd);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+            `;
 
-        container.appendChild(particle);
+            container.appendChild(particle);
+        }
     }
-}
-
-// Create 3D Grid Background (lightweight)
-function create3DGrid() {
-    if (document.querySelector('.grid-3d-bg')) return;
-
-    const grid = document.createElement('div');
-    grid.className = 'grid-3d-bg';
-    grid.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px) 0 0 / 100px 100px,
-            linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px) 0 0 / 100px 100px;
-        transform: perspective(500px) rotateX(60deg);
-        transform-origin: center top;
-        z-index: -1;
-        pointer-events: none;
-    `;
-    document.body.appendChild(grid);
 }
 
 // Initialize on load
 window.addEventListener('load', function() {
     console.log('Portfolio: Loaded');
-    create3DGrid();
+
+    // Delay particle creation for better performance
+    setTimeout(createFloatingParticles, 2000);
 });

@@ -408,7 +408,7 @@
             </div>
 
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex items-center space-x-8">
+            <div class="hidden md:flex items-center space-x-8 desktop-nav">
                 <a href="#home" class="text-gray-300 hover:text-white text-lg transition-colors duration-300">Home</a>
                 <a href="#about" class="text-gray-300 hover:text-white text-lg transition-colors duration-300">About</a>
                 <a href="#skills" class="text-gray-300 hover:text-white text-lg transition-colors duration-300">Skills</a>
@@ -416,14 +416,27 @@
                 <a href="#contact" class="text-gray-300 hover:text-white text-lg transition-colors duration-300">Contact</a>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-gray-300 hover:text-white text-2xl">
+            <!-- Mobile Menu Button - UPDATED -->
+            <button id="menu-btn" class="menu-btn md:hidden text-gray-300 hover:text-white">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </div>
 </nav>
 
+<!-- Mobile Menu Overlay - UPDATED -->
+<div id="mobile-menu-container" class="mobile-menu-container">
+    <div class="mobile-menu-content">
+        <a href="#home" class="mobile-nav-link">Home</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#skills" class="mobile-nav-link">Skills</a>
+        <a href="#projects" class="mobile-nav-link">Projects</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <button id="close-menu-btn" class="close-menu-btn">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
 <!-- Mobile Menu Overlay -->
 <div id="mobile-menu-container" class="mobile-menu-container">
     <div class="mobile-menu-content">
@@ -779,6 +792,7 @@
 </main>
 
 <!-- Main Script -->
+<!-- Main Script - UPDATED FOR MOBILE MENU -->
 <script>
     // Loading screen removal
     function hideLoadingScreen() {
@@ -794,16 +808,32 @@
     }
 
     // Mobile menu functions
-    function openMobileMenu() {
+    function toggleMobileMenu() {
         const mobileMenu = document.getElementById('mobile-menu-container');
-        mobileMenu.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        const menuBtn = document.getElementById('menu-btn');
+        const body = document.body;
+
+        mobileMenu.classList.toggle('active');
+        menuBtn.classList.toggle('active');
+
+        if (mobileMenu.classList.contains('active')) {
+            body.style.overflow = 'hidden';
+            menuBtn.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+            body.style.overflow = 'auto';
+            menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        }
     }
 
     function closeMobileMenu() {
         const mobileMenu = document.getElementById('mobile-menu-container');
-        mobileMenu.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        const menuBtn = document.getElementById('menu-btn');
+        const body = document.body;
+
+        mobileMenu.classList.remove('active');
+        menuBtn.classList.remove('active');
+        body.style.overflow = 'auto';
+        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
     }
 
     // Initialize everything when DOM is loaded
@@ -816,18 +846,31 @@
         // Mobile menu toggle
         const menuBtn = document.getElementById('menu-btn');
         const closeMenuBtn = document.getElementById('close-menu-btn');
-        const closeMenuLinks = document.querySelectorAll('.close-menu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
         if (menuBtn) {
-            menuBtn.addEventListener('click', openMobileMenu);
+            menuBtn.addEventListener('click', toggleMobileMenu);
         }
 
         if (closeMenuBtn) {
             closeMenuBtn.addEventListener('click', closeMobileMenu);
         }
 
-        closeMenuLinks.forEach(link => {
+        // Close menu when clicking links
+        mobileNavLinks.forEach(link => {
             link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu-container');
+            const menuBtn = document.getElementById('menu-btn');
+
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+                    closeMobileMenu();
+                }
+            }
         });
 
         // Smooth scrolling
@@ -870,11 +913,15 @@
         const cards = document.querySelectorAll('.premium-card');
         cards.forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
+                if (window.innerWidth > 768) { // Only on desktop
+                    this.style.transform = 'translateY(-15px) scale(1.02)';
+                }
             });
 
             card.addEventListener('mouseleave', function() {
-                this.style.transform = '';
+                if (window.innerWidth > 768) { // Only on desktop
+                    this.style.transform = '';
+                }
             });
         });
 
@@ -892,6 +939,20 @@
 
         checkMobileTypewriter();
         window.addEventListener('resize', checkMobileTypewriter);
+
+        // Disable heavy animations on mobile
+        function optimizeForMobile() {
+            if (window.innerWidth <= 768) {
+                // Disable card hover effects on mobile
+                const cards = document.querySelectorAll('.premium-card, .project-card, .skill-card');
+                cards.forEach(card => {
+                    card.style.transition = 'transform 0.2s ease';
+                });
+            }
+        }
+
+        optimizeForMobile();
+        window.addEventListener('resize', optimizeForMobile);
 
         console.log('Portfolio: Initialized successfully');
     });
