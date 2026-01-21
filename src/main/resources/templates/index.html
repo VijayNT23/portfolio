@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Vijay Pandey | Software Engineer</title>
+    <title>VP-Portfolio | Vijay Pandey</title>
+    <link rel="icon" href="data:image/svg+xml,
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+    <rect width='100' height='100' rx='22' fill='%23111'/>
+    <text x='50' y='67' font-size='54' text-anchor='middle' fill='%2300f5ff' font-family='Arial' font-weight='bold'>VP</text>
+    </svg>">
+
 
     <!-- Preconnect to CDNs -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
@@ -105,9 +111,16 @@
     <!-- Font Awesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+    <rect width='100' height='100' rx='20' fill='%23000'/>
+    <text x='50' y='65' font-size='55' text-anchor='middle' fill='%23ffffff' font-family='Arial'>VP</text>
+    </svg>">
+
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
 
     <style>
         * {
@@ -437,22 +450,9 @@
         </button>
     </div>
 </div>
-<!-- Mobile Menu Overlay -->
-<div id="mobile-menu-container" class="mobile-menu-container">
-    <div class="mobile-menu-content">
-        <a href="#home" class="close-menu">Home</a>
-        <a href="#about" class="close-menu">About</a>
-        <a href="#skills" class="close-menu">Skills</a>
-        <a href="#projects" class="close-menu">Projects</a>
-        <a href="#contact" class="close-menu">Contact</a>
-        <button id="close-menu-btn" class="mt-8 text-3xl text-electric-blue hover:text-white transition-colors duration-300">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-</div>
 
 <!-- Main Content -->
-<main class="pt-24">
+<main class="pt-18">
     <!-- Hero Section - Responsive -->
     <section id="home" class="min-h-screen flex items-center justify-center py-20 px-4">
         <div class="container">
@@ -580,7 +580,7 @@
                     </div>
 
                     <!-- Tech Passions -->
-                    <div>
+                    <div class="space-y-4 tech-passions-list">
                         <h3 class="text-xl lg:text-2xl font-bold mb-4 lg:mb-6">Tech Passions</h3>
                         <div class="flex flex-wrap gap-3 lg:gap-4">
                             <span th:each="passion : ${techPassions}"
@@ -749,6 +749,13 @@
                            class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl premium-card flex items-center justify-center text-xl lg:text-2xl text-gray-400 hover:text-white hover:scale-110 transition-all duration-300">
                             <i class="fab fa-github"></i>
                         </a>
+                        <a href="https://wa.me/919004645040?text=Hi%20Vijay%2C%20I%20saw%20your%20portfolio%20and%20wanted%20to%20connect!"
+                           target="_blank"
+                           class="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl premium-card flex items-center justify-center text-xl lg:text-2xl text-gray-400 hover:text-white hover:scale-110 transition-all duration-300">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+
+
                     </div>
                 </div>
             </div>
@@ -777,7 +784,7 @@
                     <p class="text-gray-500 text-sm lg:text-base mt-2">
                         <span class="gradient-text">Crafted with passion • Built for impact</span>
                         <br>
-                        <span class="text-gray-400">Spring Boot & Tailwind CSS</span>
+                        <span class="text-gray-400">Spring Boot • Thymeleaf • Tailwind CSS</span>
                     </p>
                 </div>
 

@@ -1,50 +1,110 @@
 /* Custom Styles for Enhanced 3D Portfolio - MOBILE OPTIMIZED */
 
-/* Navigation Links */
+/* ========== REMOVED ALL @APPLY BLOCKS ========== */
+
+/* Navigation Links - Updated without @apply */
 .nav-link {
-    @apply text-gray-300 hover:text-white transition-colors duration-300 relative;
+    color: #d1d5db;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #ffffff;
 }
 
 .nav-underline {
-    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-neon-blue to-neon-purple transition-all duration-300;
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    width: 0;
+    height: 0.125rem;
+    background: linear-gradient(to right, #00f3ff, #9d4edd);
+    transition: all 0.3s;
 }
 
 .nav-link:hover .nav-underline {
-    @apply w-full;
+    width: 100%;
 }
 
 .mobile-nav-link {
-    @apply text-gray-300 hover:text-white py-3 px-4 rounded-lg hover:bg-gray-800/50 transition-all duration-300 flex items-center;
+    color: #d1d5db;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
 }
 
-/* Skill Cards - Enhanced 3D */
+.mobile-nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(31, 41, 55, 0.5);
+}
+
+/* Skill Cards - Updated without @apply */
 .skill-card {
-    @apply p-6 rounded-2xl bg-gradient-to-br from-card-bg/50 to-dark-bg/50 border border-gray-800/50
-    transition-all duration-500 transform-gpu;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom right, rgba(26, 26, 46, 0.5), rgba(10, 10, 15, 0.5));
+    border: 1px solid rgba(107, 114, 128, 0.5);
+    transition: all 0.5s;
     transform-style: preserve-3d;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
-/* 3D Project Cards */
+/* 3D Project Cards - Updated without @apply */
 .project-card {
-    @apply transition-all duration-500 transform-gpu;
+    transition: all 0.5s;
     transform-style: preserve-3d;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 .project-card:hover {
     transform: translateZ(20px) rotateY(5deg) rotateX(5deg);
 }
 
-/* Contact Cards */
+/* Contact Cards - Updated without @apply */
 .contact-card {
-    @apply p-8 rounded-2xl bg-gradient-to-br from-card-bg to-dark-bg border border-gray-800/50
-    hover:border-neon-blue transition-all duration-300 hover:shadow-xl hover:shadow-neon-blue/20
-    text-center cursor-pointer transform-gpu;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom right, #1a1a2e, #0a0a0f);
+    border: 1px solid rgba(107, 114, 128, 0.5);
+    transition: all 0.3s;
+    text-align: center;
+    cursor: pointer;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
+.contact-card:hover {
+    border-color: #00f3ff;
+    box-shadow: 0 20px 25px -5px rgba(0, 243, 255, 0.2);
+}
+
+/* Social Icons - Updated without @apply */
 .social-icon {
-    @apply w-12 h-12 rounded-full bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700
-    flex items-center justify-center text-xl text-gray-400 hover:text-white
-    hover:border-neon-blue transition-all duration-300 hover:scale-110;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    background: linear-gradient(to bottom right, #1f2937, #111827);
+    border: 1px solid #374151;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    color: #9ca3af;
+    transition: all 0.3s;
+}
+
+.social-icon:hover {
+    color: #ffffff;
+    border-color: #00f3ff;
+    transform: scale(1.1);
 }
 
 /* Animation Delays */
@@ -425,8 +485,14 @@ body {
     transform: scale(1.2);
 }
 
-/* MOBILE NAVBAR FIX */
+/* ========== MOBILE MEDIA QUERIES ========== */
 @media (max-width: 768px) {
+    /* ✅ FIX EXTRA SPACE ABOVE HERO SECTION */
+    #home {
+        padding-top: 90px !important;
+        padding-bottom: 30px !important; /* Added from your update */
+    }
+
     /* Show hamburger menu button */
     .menu-btn {
         display: block;
@@ -437,9 +503,36 @@ body {
         display: none !important;
     }
 
-    /* HERO SECTION MOBILE FIX */
+    /* ✅ HERO SECTION MOBILE FIX - SIMPLIFIED AND CLEAN */
     #home .lg\:grid-cols-2 {
         grid-template-columns: 1fr !important;
+    }
+
+    /* Hero content comes first */
+    .hero-content {
+        order: 1 !important;
+        text-align: center;
+    }
+
+    /* Hero image comes second */
+    .hero-image {
+        order: 2 !important;
+        margin-top: 24px;
+    }
+
+    /* Hide the big profile image on mobile */
+    .profile-image {
+        display: none !important;
+    }
+
+    /* Contact info cards full width and better spacing */
+    .contact-info {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        margin-top: 20px !important;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #home h1 {
@@ -448,36 +541,47 @@ body {
         text-align: center;
     }
 
-    #home .profile-image {
-        width: 240px !important;
-        height: 240px !important;
-        margin: 0 auto;
+    /* Reduce space below "View Projects" button */
+    #home .cta-button,
+    #home a[href="#projects"] {
+        margin-bottom: 14px !important;
     }
 
+    /* Reduce gap before contact cards */
     #home .contact-info {
-        grid-template-columns: 1fr !important;
-        max-width: 320px;
-        margin: 2rem auto 0;
+        margin-top: 14px !important;
+        gap: 14px !important;
     }
 
-    .hero-content {
-        order: 2;
-        text-align: center;
+    /* Reduce extra bottom margin after contact cards */
+    #home .contact-card {
+        margin-bottom: 0 !important;
     }
 
-    .hero-image {
-        order: 1;
-        margin-bottom: 2rem;
+    /* ✅ SKILLS SECTION MOBILE FIX - 2 COLUMNS WITH BETTER SPACING */
+    /* Force skills grid to 2 columns on mobile */
+    #skills .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 14px !important;
     }
 
-    /* SKILLS SECTION MOBILE FIX */
+    /* Make skill card content smaller so it fits nicely */
+    #skills .skill-card {
+        padding: 14px !important;
+    }
+
+    #skills .skill-card i {
+        font-size: 26px !important;
+    }
+
+    #skills .skill-card h3 {
+        font-size: 14px !important;
+    }
+
+    /* Also keep the existing selector for compatibility */
     #skills .lg\:grid-cols-5 {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 1rem !important;
-    }
-
-    .skill-card {
-        padding: 1rem !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 14px !important;
     }
 
     .skill-card i {
@@ -495,16 +599,27 @@ body {
         padding: 1.5rem !important;
     }
 
-    /* CONTACT SECTION MOBILE FIX */
+    /* ✅ CONTACT SECTION MOBILE FIX - EQUAL HEIGHT CARDS */
     #contact .md\:grid-cols-2 {
         grid-template-columns: 1fr !important;
         gap: 1.5rem !important;
     }
 
-    .contact-card {
+    #contact .contact-card {
         margin: 0 auto;
         max-width: 95%;
         padding: 1.5rem !important;
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* ✅ SOCIAL ICONS CENTERED AND WRAPPED */
+    #contact .contact-card .flex {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 14px !important;
     }
 
     /* ABOUT SECTION MOBILE FIX */
@@ -513,8 +628,27 @@ body {
         gap: 2rem !important;
     }
 
+    /* Reduce the space before About section */
+    #about {
+        padding-top: 40px !important;
+    }
+
     .about-card {
         margin-bottom: 2rem;
+    }
+
+    /* Tech Passions List */
+    .tech-passions-list {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+
+    .tech-passion-item {
+        background: rgba(255, 255, 255, 0.04) !important;
+        border: 1px solid rgba(255, 0, 200, 0.3) !important;
+        padding: 14px 14px !important;
+        border-radius: 18px !important;
     }
 
     /* FONT SIZES FOR MOBILE */
@@ -544,6 +678,8 @@ body {
     section {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
     }
 
     .px-8 {
@@ -589,7 +725,8 @@ body {
 /* EXTRA SMALL DEVICES */
 @media (max-width: 480px) {
     #skills .lg\:grid-cols-5 {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
     }
 
     #home h1 {
@@ -649,4 +786,20 @@ body {
 
 .lazy-bg.loaded {
     background-image: var(--bg-image);
+}
+
+#contact .contact-card {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mobile-menu-container {
+    z-index: 99999 !important;
+}
+
+#menu-btn {
+    z-index: 999999 !important;
+    position: relative;
 }
