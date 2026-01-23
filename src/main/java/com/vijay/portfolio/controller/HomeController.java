@@ -155,7 +155,7 @@ public class HomeController {
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)
                 .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\"Vijay_Pandey_Resume.pdf\"")
+                        "attachment; filename=\"Vijay-Pandey-Resume.pdf\"")
                 .body(resource);
     }
 }
